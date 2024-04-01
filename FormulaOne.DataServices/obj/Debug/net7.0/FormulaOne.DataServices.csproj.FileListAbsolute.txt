@@ -1,0 +1,11 @@
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormulaOne.DataServices\bin\Debug\net7.0\FormulaOne.DataServices.deps.json
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormulaOne.DataServices\bin\Debug\net7.0\FormulaOne.DataServices.dll
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormulaOne.DataServices\bin\Debug\net7.0\FormulaOne.DataServices.pdb
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormulaOne.DataServices\obj\Debug\net7.0\FormulaOne.DataServices.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormulaOne.DataServices\obj\Debug\net7.0\FormulaOne.DataServices.AssemblyInfoInputs.cache
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormulaOne.DataServices\obj\Debug\net7.0\FormulaOne.DataServices.AssemblyInfo.cs
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormulaOne.DataServices\obj\Debug\net7.0\FormulaOne.DataServices.csproj.CoreCompileInputs.cache
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormulaOne.DataServices\obj\Debug\net7.0\FormulaOne.DataServices.dll
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormulaOne.DataServices\obj\Debug\net7.0\refint\FormulaOne.DataServices.dll
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormulaOne.DataServices\obj\Debug\net7.0\FormulaOne.DataServices.pdb
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormulaOne.DataServices\obj\Debug\net7.0\ref\FormulaOne.DataServices.dll
