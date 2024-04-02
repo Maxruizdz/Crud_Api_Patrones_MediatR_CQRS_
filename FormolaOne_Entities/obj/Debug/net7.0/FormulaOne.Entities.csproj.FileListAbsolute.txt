@@ -9,3 +9,6 @@ C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormolaOne_Entities\obj\Debug\net7.0\
 C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormolaOne_Entities\obj\Debug\net7.0\refint\FormulaOne.Entities.dll
 C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormolaOne_Entities\obj\Debug\net7.0\FormulaOne.Entities.pdb
 C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormolaOne_Entities\obj\Debug\net7.0\ref\FormulaOne.Entities.dll
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormolaOne_Entities\bin\Debug\net7.0\FormulaOne.Entities.runtimeconfig.json
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormolaOne_Entities\obj\Debug\net7.0\FormulaOne.Entities.csproj.AssemblyReference.cache
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\FormolaOne_Entities\obj\Debug\net7.0\FormulaOne.Entities.genruntimeconfig.cache
