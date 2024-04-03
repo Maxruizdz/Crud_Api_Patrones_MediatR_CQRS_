@@ -1,4 +1,6 @@
 using FormulaOne.DataServices.Data;
+using FormulaOne.DataServices.Repositories;
+using FormulaOne.DataServices.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,9 +16,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 
 });
-
-
-
+builder.Services.AddScoped<IDriverRepository, DriverRepository>();
+builder.Services.AddScoped<IAchievementRepository, AchievementRepository>();
+builder.Services.AddScoped <IUnitOfWork, UnitOfWork>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
