@@ -13,7 +13,7 @@ namespace FormulaOne.DataServices.Repositories
 {
     public class DriverRepository : GenericRepository<Driver>, IDriverRepository
     {
-        public DriverRepository(ILogger logger, AppDbContext appDbContext) : base(logger, appDbContext)
+        public DriverRepository(ILogger<DriverRepository>logger, AppDbContext appDbContext) : base(logger, appDbContext)
         {
         }
 

@@ -14,7 +14,7 @@ namespace FormulaOne.DataServices.Repositories
 {
     public class AchievementRepository : GenericRepository<Achievement>, IAchievementRepository
     {
-        public AchievementRepository(ILogger logger, AppDbContext appDbContext) : base(logger, appDbContext)
+        public AchievementRepository(ILogger<AchievementRepository> logger, AppDbContext appDbContext) : base(logger, appDbContext)
         {
         }
 

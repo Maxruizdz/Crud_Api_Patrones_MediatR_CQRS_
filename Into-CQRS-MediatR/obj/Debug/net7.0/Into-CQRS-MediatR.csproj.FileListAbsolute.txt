@@ -78,3 +78,5 @@ C:\Users\usuario\Desktop\MediaTr-Cqrs-into\Into-CQRS-MediatR\bin\Debug\net7.0\Fo
 C:\Users\usuario\Desktop\MediaTr-Cqrs-into\Into-CQRS-MediatR\bin\Debug\net7.0\FormulaOne.Entities.dll
 C:\Users\usuario\Desktop\MediaTr-Cqrs-into\Into-CQRS-MediatR\bin\Debug\net7.0\FormulaOne.DataServices.pdb
 C:\Users\usuario\Desktop\MediaTr-Cqrs-into\Into-CQRS-MediatR\bin\Debug\net7.0\FormulaOne.Entities.pdb
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\Into-CQRS-MediatR\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\usuario\Desktop\MediaTr-Cqrs-into\Into-CQRS-MediatR\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

@@ -17,7 +17,7 @@ namespace FormulaOne.DataServices.Repositories
         internal DbSet<T> _DbSet;
 
 
-        public GenericRepository( ILogger logger, AppDbContext appDbContext
+        public GenericRepository(ILogger<GenericRepository<T>> logger, AppDbContext appDbContext
             ) 
         {
             _appDbContext = appDbContext;
