@@ -5,7 +5,7 @@ using FormulaOne.Entities.Dtos.Request;
 using FormulaOne.Entities.Dtos.Response;
 using MediatR;
 
-namespace Into_CQRS_MediatR.Feature.Command.CreateCommand
+namespace Into_CQRS_MediatR.Feature.Drivers.Command.CreateCommand
 {
     public class CreateDriverHandler : IRequestHandler<CreateDriverCommand, GetDriverResponse>
     {
@@ -18,7 +18,7 @@ namespace Into_CQRS_MediatR.Feature.Command.CreateCommand
             _mapper = mapper;
         }
 
-        public async  Task<GetDriverResponse> Handle(CreateDriverCommand request, CancellationToken cancellationToken)
+        public async Task<GetDriverResponse> Handle(CreateDriverCommand request, CancellationToken cancellationToken)
         {
             var driver = _mapper.Map<Driver>(request._request);
 

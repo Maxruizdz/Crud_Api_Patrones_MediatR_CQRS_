@@ -3,10 +3,10 @@ using FormulaOne.DataServices.Repositories.Interfaces;
 using FormulaOne.Entities.DbSet;
 using FormulaOne.Entities.Dtos.Request;
 using FormulaOne.Entities.Dtos.Response;
-using Into_CQRS_MediatR.Feature.Command.CreateCommand;
-using Into_CQRS_MediatR.Feature.Queries;
-using Into_CQRS_MediatR.Feature.Queries.GetAllDriversQuery;
-using Into_CQRS_MediatR.Feature.Queries.GetByIdQuey;
+using Into_CQRS_MediatR.Feature.Drivers.Command.CreateCommand;
+using Into_CQRS_MediatR.Feature.Drivers.Command.UpdateCommand;
+using Into_CQRS_MediatR.Feature.Drivers.Queries.GetAllDriversQuery;
+using Into_CQRS_MediatR.Feature.Drivers.Queries.GetByIdQuey;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -58,11 +58,11 @@ namespace Into_CQRS_MediatR.Controllers
             if(!ModelState.IsValid)
                 return BadRequest();
 
-            var result = _mapper.Map<Driver>(updateDriver);
+            var command = new UpdateDriverCommand(updateDriver);
+            var result=  await _mediator.Send(command);
 
-            await _unitOfWork._DriverRepository.Update(result);
-            await _unitOfWork.CompleteAsync();
-            return Ok();
+
+            return result? NoContent() : BadRequest();
         
         
         }
@@ -70,7 +70,7 @@ namespace Into_CQRS_MediatR.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllDrivers()
         {
-            var query = new GetAllDriversQuery();
+         var query = new GetAllDriversQuery();
          var result =  await _mediator.Send(query);
 
             return Ok(result);
