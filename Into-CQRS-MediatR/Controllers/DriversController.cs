@@ -4,6 +4,7 @@ using FormulaOne.Entities.DbSet;
 using FormulaOne.Entities.Dtos.Request;
 using FormulaOne.Entities.Dtos.Response;
 using Into_CQRS_MediatR.Feature.Drivers.Command.CreateCommand;
+using Into_CQRS_MediatR.Feature.Drivers.Command.DeleteCommand;
 using Into_CQRS_MediatR.Feature.Drivers.Command.UpdateCommand;
 using Into_CQRS_MediatR.Feature.Drivers.Queries.GetAllDriversQuery;
 using Into_CQRS_MediatR.Feature.Drivers.Queries.GetByIdQuey;
@@ -83,15 +84,13 @@ namespace Into_CQRS_MediatR.Controllers
 
         public async Task<IActionResult> DeleteDriver(Guid driverId)
         {
-            var driver = await _unitOfWork._DriverRepository.GetById(driverId);
 
-            if (driver == null)
-                return NotFound();
+            var command = new DeleteDriverCommand(driverId);
 
-            await _unitOfWork._DriverRepository.Delete(driverId);
-            await  _unitOfWork.CompleteAsync();
+            var result = await _mediator.Send(command);
 
-            return NoContent();
+    
+            return result?  NoContent(): BadRequest();
         
         }
     }
