@@ -2,12 +2,11 @@
 using FormulaOne.DataServices.Repositories.Interfaces;
 using FormulaOne.Entities.DbSet;
 using FormulaOne.Entities.Dtos.Response;
-using Into_CQRS_MediatR.Feature.Queries;
 using MediatR;
 
-namespace Into_CQRS_MediatR.Handler
+namespace Into_CQRS_MediatR.Feature.Queries.GetByIdQuey
 {
-    public class GetDriverByIdHandler : IRequestHandler<GetDriverByIdQuery,GetDriverResponse>
+    public class GetDriverByIdHandler : IRequestHandler<GetDriverByIdQuery, GetDriverResponse>
     {
 
         private readonly IUnitOfWork _unitOfWork;
@@ -23,8 +22,8 @@ namespace Into_CQRS_MediatR.Handler
         {
             var driver = await _unitOfWork._DriverRepository.GetById(request.DriverId);
 
-           
-               var result = _mapper.Map<GetDriverResponse>(driver);
+
+            var result = _mapper.Map<GetDriverResponse>(driver);
 
 
             return result;

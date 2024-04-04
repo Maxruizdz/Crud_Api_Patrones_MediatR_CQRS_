@@ -1,9 +1,9 @@
 ﻿using FormulaOne.Entities.Dtos.Response;
 using MediatR;
 
-namespace Into_CQRS_MediatR.Feature.Queries
+namespace Into_CQRS_MediatR.Feature.Queries.GetByIdQuey
 {
-    public class GetDriverByIdQuery: IRequest<GetDriverResponse>
+    public class GetDriverByIdQuery : IRequest<GetDriverResponse>
     {
 
         public Guid DriverId { get; }

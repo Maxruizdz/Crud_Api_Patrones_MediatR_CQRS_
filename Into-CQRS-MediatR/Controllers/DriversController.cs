@@ -3,7 +3,10 @@ using FormulaOne.DataServices.Repositories.Interfaces;
 using FormulaOne.Entities.DbSet;
 using FormulaOne.Entities.Dtos.Request;
 using FormulaOne.Entities.Dtos.Response;
+using Into_CQRS_MediatR.Feature.Command.CreateCommand;
 using Into_CQRS_MediatR.Feature.Queries;
+using Into_CQRS_MediatR.Feature.Queries.GetAllDriversQuery;
+using Into_CQRS_MediatR.Feature.Queries.GetByIdQuey;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -42,12 +45,11 @@ namespace Into_CQRS_MediatR.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var driver = _mapper.Map<Driver>(driverRequest);
+            var command = new CreateDriverCommand(driverRequest);
+           
+            var driver= await _mediator.Send(command);
 
-            await _unitOfWork._DriverRepository.Add(driver);
-            await _unitOfWork.CompleteAsync();
-
-            return CreatedAtAction(nameof(GetDriver), new { driverId = driver.Id }, driver);
+            return CreatedAtAction(nameof(GetDriver), new { driverId = driver.DriveId }, driver);
         }
         [HttpPut]
 

@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using FormulaOne.DataServices.Repositories.Interfaces;
 using FormulaOne.Entities.Dtos.Response;
-using Into_CQRS_MediatR.Feature.Queries;
 using MediatR;
 using MediatR.Wrappers;
 
-namespace Into_CQRS_MediatR.Handler
+namespace Into_CQRS_MediatR.Feature.Queries.GetAllDriversQuery
 {
     public class GetAllDriversHandler : IRequestHandler<GetAllDriversQuery, IEnumerable<GetDriverResponse>>
     {
@@ -15,8 +14,8 @@ namespace Into_CQRS_MediatR.Handler
 
         public GetAllDriversHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-           _unitOfWork= unitOfWork;
-            _mapper= mapper;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<GetDriverResponse>> Handle(GetAllDriversQuery request, CancellationToken cancellationToken)

@@ -24,8 +24,4 @@
     <ProjectReference Include="..\FormulaOne.DataServices\FormulaOne.DataServices.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Feature\Command\" />
-  </ItemGroup>
-
 </Project>
