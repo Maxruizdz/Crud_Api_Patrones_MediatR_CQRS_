@@ -3,6 +3,8 @@ using FormulaOne.DataServices.Repositories.Interfaces;
 using FormulaOne.Entities.DbSet;
 using FormulaOne.Entities.Dtos.Request;
 using FormulaOne.Entities.Dtos.Response;
+using Into_CQRS_MediatR.Feature.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -13,23 +15,23 @@ namespace Into_CQRS_MediatR.Controllers
     [ApiController]
     public class DriversController : BaseController
     {
-        public DriversController(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
+
+        private readonly IMediator _mediator;
+        public DriversController(IUnitOfWork unitOfWork, IMapper mapper, IMediator mediator) : base(unitOfWork, mapper)
         {
+            _mediator = mediator;
         }
 
         [HttpGet]
         [Route("{driverId:Guid}")]
         public async Task<IActionResult> GetDriver(Guid driverId) 
         {
+            var query = new GetDriverByIdQuery(driverId);
+            var result = await _mediator.Send(query);
 
-            var driver = await _unitOfWork._DriverRepository.GetById(driverId);
-
-            if(driver is null)
+            if(result is null)
                 return NotFound();
 
-
-            var result = _mapper.Map<GetDriverResponse>(driver);
-            
 
             return Ok(result);
         }
@@ -66,10 +68,8 @@ namespace Into_CQRS_MediatR.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllDrivers()
         {
-            var drivers = await _unitOfWork._DriverRepository.All();
-
-            var result = _mapper.Map<IEnumerable<GetDriverResponse>> (drivers);
-
+            var query = new GetAllDriversQuery();
+         var result =  await _mediator.Send(query);
 
             return Ok(result);
         
