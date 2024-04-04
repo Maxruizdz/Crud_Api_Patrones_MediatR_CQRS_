@@ -1,4 +1,4 @@
-﻿}using FormulaOne.Entities.Dtos.Request;
+﻿using FormulaOne.Entities.Dtos.Request;
 using MediatR;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 

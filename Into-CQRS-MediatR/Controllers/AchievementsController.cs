@@ -3,8 +3,12 @@ using FormulaOne.DataServices.Repositories.Interfaces;
 using FormulaOne.Entities.DbSet;
 using FormulaOne.Entities.Dtos.Request;
 using FormulaOne.Entities.Dtos.Response;
+using Into_CQRS_MediatR.Feature.Achievements.Command.CreateCommand;
+using Into_CQRS_MediatR.Feature.Achievements.Query.GetByIdCommand;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Into_CQRS_MediatR.Controllers
 {
@@ -12,8 +16,11 @@ namespace Into_CQRS_MediatR.Controllers
     [ApiController]
     public class AchievementsController : BaseController
     {
-        public AchievementsController(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
+        private readonly IMediator _mediator;
+        public AchievementsController(IUnitOfWork unitOfWork, IMapper mapper, IMediator mediator) : base(unitOfWork, mapper)
         {
+
+            _mediator= mediator;
         }
 
         [HttpGet]
@@ -21,13 +28,11 @@ namespace Into_CQRS_MediatR.Controllers
 
         public async Task<IActionResult> GetDriverAchievement(Guid driverId)
         {
-            var driverAchievement = await _unitOfWork._AchievementRepository.GetDriverAchievementAsync(driverId);
+            var result = _mediator.Send(new GetAchievementByIdQuery(driverId));
 
-            if (driverAchievement == null)
-                return NotFound("Achievement not found");
+            if (result == null)
+                return NotFound();
 
-
-            var result = _mapper.Map<DriverAchievementResponse>(driverAchievement);
 
             return Ok(result);
         }
@@ -38,14 +43,12 @@ namespace Into_CQRS_MediatR.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-
-            var result = _mapper.Map<Achievement>(driverAchievementRequest);
-            await _unitOfWork._AchievementRepository.Add(result);
-            await _unitOfWork.CompleteAsync();
+            var command = new CreateAchievementCommand(driverAchievementRequest);
+            var result = await _mediator.Send(command);
 
 
 
-            return CreatedAtAction(nameof(GetDriverAchievement), new { driverid = result.Id }, result);
+            return CreatedAtAction(nameof(GetDriverAchievement), new { driverid = result.DriverId }, result);
         }
 
         [HttpPut]
