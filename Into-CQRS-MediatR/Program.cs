@@ -1,12 +1,14 @@
 using FormulaOne.DataServices.Data;
 using FormulaOne.DataServices.Repositories;
 using FormulaOne.DataServices.Repositories.Interfaces;
+using Hangfire;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+var HangFireConnection = builder.Configuration.GetConnectionString("HangFire");
 builder.Services.AddDbContext<AppDbContext>(options => 
 {
     var conexion = builder.Configuration.GetConnectionString("local");
@@ -26,6 +28,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Program).Assembly));
+builder.Services.AddHangfire(confi=>
+confi.SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+    .UseSimpleAssemblyNameTypeSerializer()
+    .UseRecommendedSerializerSettings()
+    .UseSqlServerStorage(HangFireConnection));
+
+
+
+builder.Services.AddHangfireServer();
 var app = builder.Build();
 
 
@@ -36,10 +47,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+
+
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseHangfireDashboard();
+
+app.MapHangfireDashboard("/hangfire");
+
+RecurringJob.AddOrUpdate(() => Console.WriteLine("hello from hangifre"), "* * * * *");
 
 app.Run();
